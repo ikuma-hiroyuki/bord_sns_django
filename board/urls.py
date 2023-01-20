@@ -1,8 +1,7 @@
 from django.urls import path
 
-from board.views import signupfunc
+from board.views import boardfunc
 
 urlpatterns = [
-    path('', signupfunc),
-    path('signup/', signupfunc),
+    path('', boardfunc, name='board'),
 ]

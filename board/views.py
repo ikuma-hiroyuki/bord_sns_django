@@ -1,5 +1,5 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 
 
-def signupfunc(request):
-    return render(request, 'signup.html', {'some': 100})
+def boardfunc(request):
+    return HttpResponse('bord')
