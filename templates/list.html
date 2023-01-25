@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <div class="alert alert-primary" role="alert">
+        <h3>社内SNS</h3>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    {% for items in object_list %}
+        <div class="alert alert-success" role="alert">
+            <p>タイトル: {{ items.title }}</p>
+            <p>投稿者: {{ items.author }}</p>
+            <a class="btn btn-primary" href="#" role="button" aria-pressed="true">Link</a>
+            <a class="btn btn-secondary" href="#" role="button" aria-pressed="true">Link</a>
+        </div>
+    {% endfor %}
+{% endblock content %}
+
