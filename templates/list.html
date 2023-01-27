@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% block css %}
+{% endblock css %}
 
 {% block header %}
     <div class="alert alert-primary" role="alert">
@@ -7,13 +9,22 @@
 {% endblock header %}
 
 {% block content %}
-    {% for items in object_list %}
-        <div class="alert alert-success" role="alert">
-            <p>タイトル: {{ items.title }}</p>
-            <p>投稿者: {{ items.author }}</p>
-            <a class="btn btn-primary" href="#" role="button" aria-pressed="true">Link</a>
-            <a class="btn btn-secondary" href="#" role="button" aria-pressed="true">Link</a>
+    {% if request.user.is_authenticated %}
+        <div class="container">
+            {% for item in object_list %}
+                <div class="alert alert-success" role="alert">
+                    <p>タイトル：<a href="{% url 'detail' item.pk %}">{{ item.title }}</a></p>
+                    <p>投稿者: {{ item.author }}</p>
+                    <p>いいね: {{ item.good }}</p>
+                    <a class="btn btn-primary disabled" role="button" aria-disabled="true">👍 {{ item.good }}</a>
+                    <a class="btn btn-secondary disabled" role="button" aria-disabled="true">既読{{ item.read }}人</a>
+                </div>
+            {% endfor %}
+            <a href="{% url 'logout' %}" role="button">Logout</a>
         </div>
-    {% endfor %}
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            <h3>ログインしてください</h3>
+        </div>
+    {% endif %}
 {% endblock content %}
-
